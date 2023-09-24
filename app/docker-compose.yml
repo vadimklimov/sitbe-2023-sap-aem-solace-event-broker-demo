@@ -1,0 +1,11 @@
+version: '3.8'
+name: sitbe
+
+include:
+  - path: ./broker/docker-compose.yml
+  - path: ./publisher/docker-compose.yml
+  - path: ./subscriber/docker-compose.yml
+
+networks:
+  default:
+    name: sitbe

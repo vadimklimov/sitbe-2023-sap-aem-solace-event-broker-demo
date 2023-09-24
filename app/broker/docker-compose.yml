@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  broker:
+    container_name: broker
+    image: solace/solace-pubsub-standard:10.5
+    env_file: broker.env
+    volumes:
+      - broker_storage_group:/var/lib/solace
+    ports:
+      - '8080:8080'
+    shm_size: 1g
+
+volumes:
+  broker_storage_group:

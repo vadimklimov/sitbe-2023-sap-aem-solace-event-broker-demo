@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  cloud-connector:
+    container_name: cloud-connector
+    image: vadimklimov/sap-cloud-connector:2.16.0-wolfi-openjdk8
+    platform: linux/amd64
+    volumes:
+      - scc_config:/opt/sap/scc/config
+      - scc_config_master:/opt/sap/scc/config_master
+      - scc_scc_config:/opt/sap/scc/scc_config
+      - scc_logs:/opt/sap/scc/log
+    ports:
+      - '8443:8443'
+
+volumes:
+  scc_config:
+  scc_config_master:
+  scc_scc_config:
+  scc_logs:

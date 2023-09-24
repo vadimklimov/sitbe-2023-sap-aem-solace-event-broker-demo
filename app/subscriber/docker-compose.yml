@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  dashboard:
+    container_name: dashboard
+    image: grafana/grafana-oss:10.1.0
+    volumes:
+      - dashboard_data:/var/lib/grafana
+    ports:
+      - '3000:3000'
+  database:
+    container_name: database
+    image: postgres:15
+    env_file: database.env
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  subscriber:
+    container_name: subscriber
+    image: nodered/node-red:3.0
+    volumes:
+      - subscriber_data:/data
+    ports:
+      - '1880:1880'
+    depends_on:
+      - database
+
+volumes:
+  dashboard_data:
+  database_data:
+  subscriber_data:
